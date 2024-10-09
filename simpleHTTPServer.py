@@ -1,9 +1,3 @@
-""" 
-script de servidor http local para conseguir fazer o fetch no arquivo json
-
-obs: tive o erro "CORS request not HTTP" no mozilla firefox, por isso precisei rodar um server
-"""
-
 import http.server
 import socketserver
 

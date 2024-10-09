@@ -78,10 +78,10 @@ function montarPergunta(data, i)
   nPergunta.textContent = data.perguntas[i].numPerg + ". ";
   enunciado.textContent = data.perguntas[i].questao;
 
-  altA.textContent = data.perguntas[i].A;
-  altB.textContent = data.perguntas[i].B;
-  altC.textContent = data.perguntas[i].C;
-  altD.textContent = data.perguntas[i].D;
+  altA.textContent = data.perguntas[i].altA;
+  altB.textContent = data.perguntas[i].altB;
+  altC.textContent = data.perguntas[i].altC;
+  altD.textContent = data.perguntas[i].altD;
 
   respostaJson = data.perguntas[i].resposta;
   respostasCorretas[i] = respostaJson;
