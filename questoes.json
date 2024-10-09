@@ -1,0 +1,50 @@
+{
+    "titulo": "Quiz de Astronomia",
+    "perguntas" : [
+        {            
+            "numPerg": "1",
+            "questao" :"Qual o planeta mais quente?",
+            "altA" : "Vênus",
+            "altB" : "Marte",
+            "altC" : "Mercúrio",
+            "altD" : "Rio de Janeiro",
+            "resposta" : "A"
+        },
+        {
+            "numPerg": "2",
+            "questao" :"Qual o planeta mais frio?",
+            "altA" : "Curitiba",
+            "altB" : "Netuno",
+            "altC" : "Urano",
+            "altD" : "Plutão",
+            "resposta" : "B"
+            },
+        {
+            "numPerg" : "3",
+            "questao" : "Quais são os planetas gasosos?",
+            "altA" : "Plutão, Netuno, Saturno, Urano, Jupíter",
+            "altB" : "Vênus, Saturno, Netuno",
+            "altC" : "Urano, Jupíter, Saturno, Netuno",
+            "altD" : "Terra, Mercúrio, Vênus, Plutão",
+            "resposta" : "C"
+        },
+        {
+            "numPerg" : "4",
+            "questao" : "Quais são os planetas sólidos?",
+            "altA" : "Terra, Mercúrio, Plutão, Vênus, Marte",
+            "altB" : "Marte, Terra, Mercúrio, Vênus",
+            "altC" : "Jupíter, Europa, Callisto, Terra",
+            "altD" : "Mercúrio, Marte, Lua, Saturno",
+            "resposta" : "B"
+        },
+        {
+            "numPerg" : "5",
+            "questao" : "Qual o nome do movimento em torno do Sol?",
+            "altA" : "Rotação",
+            "altB"  :"Movimentação",
+            "altC" : "Precessão",
+            "altD" : "Translação",
+            "resposta" : "D"
+        }
+    ]
+}

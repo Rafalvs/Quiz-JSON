@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="icon" href="./icon/icon.png" />
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/quiz-style.css" />
+    <title>Quiz</title>
+  </head>
+
+  <body>
+    <main id="tela-principal">
+      <section id="conteudo">
+
+        <h1 id="titulo"></h1>
+        
+        <article id="pergunta">
+          <header id="cabecalho">
+            <h3 class="total"></h3>
+            <h2 class="numDaPergunta"></h2>
+            <h2 class="enunciado"></h2>
+            <br />
+          </header>
+          
+          <section id="alternativas">
+            <ol type="a">
+              <li id="alternativaA"></li>
+              <li id="alternativaB"></li>
+              <li id="alternativaC"></li>
+              <li id="alternativaD"></li>
+            </ol>
+
+          <div class="botoes">
+            <button id="voltar">Anterior</button>
+            <button id="avancar">Próxima</button>
+            <button id="concluir">Concluir</button>
+          </div>
+          
+          <p class="aviso"></p>
+
+          <div id="tabela-container"></div>
+
+          </section>
+        </article>
+         
+      </section>
+    </main>
+  </body>
+
+<script src="./js/quiz-script.js"></script>
+</html>
