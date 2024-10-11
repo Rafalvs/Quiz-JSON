@@ -45,6 +45,15 @@
             "altC" : "Precessão",
             "altD" : "Translação",
             "resposta" : "Translação"
+        },
+        {
+            "numPerg" : "6",
+            "questao" : "Alienígenas...",
+            "altA" : "Podem existir!",
+            "altB"  :"Podem não existir!",
+            "altC" : "Não temos dados suficientes para ter certeza",
+            "altD" : "Todas as anteriores",
+            "resposta" : "Todas as anteriores"
         }
     ]
 }

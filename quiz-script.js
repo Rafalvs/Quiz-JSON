@@ -228,9 +228,6 @@ function verificarRespostas()
     }
   });
   fim();
-  console.log(nota);
-  console.log(altEscolhidas[1].texto);
-  console.log(respostasCorretas[1]);
 }
 
 function fim() {
@@ -288,6 +285,15 @@ function criarTabela(alternsEscolhidas, alternsCorretas) {
     const celulaCorreta = linha.insertCell();
     celulaCorreta.appendChild(document.createTextNode(alternsCorretas[index]));
     celulaCorreta.classList.add("celulaCorreta");
+
+    if (escolhida.texto === alternsCorretas[index])
+    {
+      celulaCorreta.style.backgroundColor = "green";
+    }
+    else
+    {
+      celulaCorreta.style.backgroundColor = "red";
+    }
   });
 
   // insere a tabela no HTML
