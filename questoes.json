@@ -8,7 +8,7 @@
             "altB" : "Marte",
             "altC" : "Mercúrio",
             "altD" : "Rio de Janeiro",
-            "resposta" : "A"
+            "resposta" : "Vênus"
         },
         {
             "numPerg": "2",
@@ -17,7 +17,7 @@
             "altB" : "Netuno",
             "altC" : "Urano",
             "altD" : "Plutão",
-            "resposta" : "B"
+            "resposta" : "Urano"
             },
         {
             "numPerg" : "3",
@@ -26,7 +26,7 @@
             "altB" : "Vênus, Saturno, Netuno",
             "altC" : "Urano, Jupíter, Saturno, Netuno",
             "altD" : "Terra, Mercúrio, Vênus, Plutão",
-            "resposta" : "C"
+            "resposta" : "Urano, Jupíter, Saturno, Netuno"
         },
         {
             "numPerg" : "4",
@@ -35,7 +35,7 @@
             "altB" : "Marte, Terra, Mercúrio, Vênus",
             "altC" : "Jupíter, Europa, Callisto, Terra",
             "altD" : "Mercúrio, Marte, Lua, Saturno",
-            "resposta" : "B"
+            "resposta" : "Marte, Terra, Mercúrio, Vênus"
         },
         {
             "numPerg" : "5",
@@ -44,7 +44,7 @@
             "altB"  :"Movimentação",
             "altC" : "Precessão",
             "altD" : "Translação",
-            "resposta" : "D"
+            "resposta" : "Translação"
         }
     ]
 }

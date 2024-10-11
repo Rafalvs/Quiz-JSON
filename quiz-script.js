@@ -121,7 +121,7 @@ function escolhas(r)
   };
   
   resp.style.fontSize = "1.2rem"; // aplica o estilo a alternativa atual
-  resp.style.backgroundColor = "plum";
+  resp.style.backgroundColor = "#f39c12";
 
   alternativaAnterior = altEscolhidas[perguntaAtual]; // armazena a alternativa atual como a ultima selecionada
 }
@@ -142,7 +142,7 @@ function estilos()
   if(altEscolhidas[perguntaAtual])
   {
     altEscolhidas[perguntaAtual].elemento.style.fontSize = "1.2rem";
-    altEscolhidas[perguntaAtual].elemento.style.backgroundColor = "plum";
+    altEscolhidas[perguntaAtual].elemento.style.backgroundColor = "#f39c12";
   }
 }
 
@@ -229,6 +229,8 @@ function verificarRespostas()
   });
   fim();
   console.log(nota);
+  console.log(altEscolhidas[1].texto);
+  console.log(respostasCorretas[1]);
 }
 
 function fim() {
@@ -244,6 +246,7 @@ function fim() {
 
   let btnVerRespostas = document.querySelector(".respostas");
   btnVerRespostas.addEventListener("click", () => criarTabela(altEscolhidas, respostasCorretas));
+  // btnVerRespostas.setAttribute('disabled', 'disabled');
 }
 
 function criarTabela(alternsEscolhidas, alternsCorretas) { 
@@ -274,17 +277,20 @@ function criarTabela(alternsEscolhidas, alternsCorretas) {
     // numero da questao
     const celulaNumero = linha.insertCell();
     celulaNumero.appendChild(document.createTextNode(index + 1));
+    celulaNumero.classList.add("celulaNumero"); // classe para manipular no css depois
 
     // alternativa escolhida
     const celulaEscolhida = linha.insertCell();
     celulaEscolhida.appendChild(document.createTextNode(escolhida ? escolhida.texto : "Não respondida"));
+    celulaEscolhida.classList.add("celulaEscolhida");
 
     // alternativa correta
     const celulaCorreta = linha.insertCell();
     celulaCorreta.appendChild(document.createTextNode(alternsCorretas[index]));
+    celulaCorreta.classList.add("celulaCorreta");
   });
 
-  // insere a tabela no container HTML
+  // insere a tabela no HTML
   document.body.appendChild(tabela);
 }
 
