@@ -1,0 +1,50 @@
+{
+    "titulo": "Quiz de Historia",
+    "perguntas" : [
+        {            
+            "numPerg": "1",
+            "questao" :"Que ano ocorreu a Revolução Francesa?",
+            "altA" : "1789",
+            "altB" : "1888",
+            "altC" : "1822",
+            "altD" : "2024",
+            "resposta" : "1789"
+        },
+        {
+            "numPerg": "2",
+            "questao" :"O que significa URSS",
+            "altA" : "União das Repúblicas Sociais Socialistas",
+            "altB" : "União das Repúblicas Socialistas Soviéticas",
+            "altC" : "Ultima Revolução Semipresidenciais",
+            "altD" : "Ultimato Representativo Sensação Sensacional",
+            "resposta" : "União das Repúblicas Socialistas Soviéticas"
+            },
+        {
+            "numPerg" : "3",
+            "questao" : "Que ano terminou a Ditadura Militar no Brasil?",
+            "altA" : "1975",
+            "altB" : "1964",
+            "altC" : "1985",
+            "altD" : "1990",
+            "resposta" : "1985"
+        },
+        {
+            "numPerg" : "4",
+            "questao" : "Que países protagonizaram a Guerra Fria?",
+            "altA" : "EUA, Inglaterra, Alemanha e Japão",
+            "altB" : "Russia e EUA",
+            "altC" : "URSS e EUA",
+            "altD" : "Antártida, Groelândia e  Canadá",
+            "resposta" : "URSS e EUA"
+        },
+        {
+            "numPerg" : "5",
+            "questao" : "Qual dos nomes abaixos pertence a um rei do continente africano?",
+            "altA" : "Tupac Shakur",
+            "altB"  :"Mandume",
+            "altC" : "Ricardo Allende",
+            "altD" : "K'inich Janaab' Pakal",
+            "resposta" : "Mandume"
+        }
+    ]
+}

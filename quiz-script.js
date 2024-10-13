@@ -1,4 +1,5 @@
 // variaveis do HTML
+
 let titulo = document.querySelector("#titulo");
 
 let botoes = document.querySelector(".botoes");
@@ -31,8 +32,8 @@ btnVoltar.addEventListener("click", ant);
 btnConcluir.setAttribute('disabled', 'disabled');
 btnVoltar.setAttribute('disabled', 'disabled');
 
-// ENDERECO DO ARQUIVO JSON
-const url = "questoes.json";
+const url = "questoes-historia.json"; // ENDERECO DO ARQUIVO JSON
+
 let quantidade; // variavel globa para guardar o numero total de perguntas
 let respostaJson;
 let nota = 0;
@@ -138,8 +139,7 @@ function estilos()
   altC.style.backgroundColor = "";
   altD.style.backgroundColor = "";
 
-  // aplica o estilo a alternativa selecionada, se houver
-  if(altEscolhidas[perguntaAtual])
+  if(altEscolhidas[perguntaAtual]) // aplica o estilo a alternativa selecionada, se houver
   {
     altEscolhidas[perguntaAtual].elemento.style.fontSize = "1.2rem";
     altEscolhidas[perguntaAtual].elemento.style.backgroundColor = "#f39c12";
@@ -217,9 +217,7 @@ function concluir()
   }
 }
 
-// nota final
-
-function verificarRespostas()
+function verificarRespostas() // nota final
 {
   altEscolhidas.forEach((respostaEscolhida, index) => {
     if (respostaEscolhida.texto === respostasCorretas[index])
@@ -230,27 +228,20 @@ function verificarRespostas()
   fim();
 }
 
-function fim() {
+function fim()
+{
   const acertos = document.createElement("div");
   acertos.classList.add("acertos");
   document.body.appendChild(acertos);
   acertos.textContent = `Você acertou ${nota} questões`;
 
-  const respostas = document.createElement("button");
-  respostas.textContent = "Ver Respostas";
-  respostas.classList.add("respostas");
-  document.body.appendChild(respostas);
-
-  let btnVerRespostas = document.querySelector(".respostas");
-  btnVerRespostas.addEventListener("click", () => criarTabela(altEscolhidas, respostasCorretas));
-  // btnVerRespostas.setAttribute('disabled', 'disabled');
+  criarTabela(altEscolhidas, respostasCorretas), 2000;
 }
 
-function criarTabela(alternsEscolhidas, alternsCorretas) { 
-  
+function criarTabela(alternsEscolhidas, alternsCorretas)
+{   
   const tabela = document.createElement("table");
   tabela.style.width = "50%";
-  tabela.border = "1";
 
   // cria o cabecalho da tabela
   const cabecalho = tabela.createTHead();
@@ -300,6 +291,4 @@ function criarTabela(alternsEscolhidas, alternsCorretas) {
   document.body.appendChild(tabela);
 }
 
-/*
-quiz 3.0 montar o proprio quiz
-*/
+// ideia: montar o proprio quiz
