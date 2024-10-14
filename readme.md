@@ -4,6 +4,8 @@
     <b> Consome um arquivo JSON com as questoes, monta elas na tela, permite avançar/voltar nas questoes para altera-las e exibe as respostas no final. </b>
 </p>
 
-<img src="https://imgur.com/8xSXg7f.jpg" alt="tela" width="750px" height="400px" align="center">
+<div align="center">
+    <img src="https://imgur.com/8xSXg7f.jpg" alt="tela" width="750px" height="400px">
+</div>
 
 <p><i> Feito em JavaScript puro </i></p>
