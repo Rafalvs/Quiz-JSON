@@ -5,7 +5,7 @@
 </p>
 
 <div align="center">
-    <img src="https://imgur.com/8xSXg7f.jpg" alt="tela" width="750px" height="400px">
+    <img src="https://imgur.com/0GCStfI.jpg" alt="tela" width="750px" height="400px">
 </div>
 
 <p><i> Feito em JavaScript puro </i></p>
