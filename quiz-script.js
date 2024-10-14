@@ -1,30 +1,28 @@
-// variaveis do HTML
+// DOM
 
 let titulo = document.querySelector("#titulo");
 
-let botoes = document.querySelector(".botoes");
-
-let total = document.querySelector(".total");
-let nPergunta = document.querySelector(".numDaPergunta");
+let totalDePerguntas = document.querySelector(".quantidade");
+let numDaPergunta = document.querySelector(".numDaPergunta");
 let enunciado = document.querySelector(".enunciado");
 
-let altA = document.querySelector("#alternativaA");
-let altB = document.querySelector("#alternativaB");
-let altC = document.querySelector("#alternativaC");
-let altD = document.querySelector("#alternativaD");
+let alternativaA = document.querySelector("#alternativaA");
+let alternativaB = document.querySelector("#alternativaB");
+let alternativaC = document.querySelector("#alternativaC");
+let alternativaD = document.querySelector("#alternativaD");
 
 let btnAvancar = document.querySelector("#avancar");
 let btnVoltar = document.querySelector("#voltar");
-let btnConcluir = document.querySelector("#concluir"); // botao de terminar o quiz
+let btnConcluir = document.querySelector("#concluir");
 
 let aviso = document.querySelector(".aviso");
 
 // Event Listeners
 
-altA.addEventListener("click", escolhas);
-altB.addEventListener("click", escolhas);
-altC.addEventListener("click", escolhas);
-altD.addEventListener("click", escolhas);
+alternativaA.addEventListener("click", escolhas);
+alternativaB.addEventListener("click", escolhas);
+alternativaC.addEventListener("click", escolhas);
+alternativaD.addEventListener("click", escolhas);
 
 btnAvancar.addEventListener("click", prox);
 btnVoltar.addEventListener("click", ant);
@@ -32,25 +30,25 @@ btnVoltar.addEventListener("click", ant);
 btnConcluir.setAttribute('disabled', 'disabled');
 btnVoltar.setAttribute('disabled', 'disabled');
 
-const url = "questoes-historia.json"; // ENDERECO DO ARQUIVO JSON
+// Variaveis Globais
 
-let quantidade; // variavel globa para guardar o numero total de perguntas
-let respostaJson;
+const url = "questoes-astronomia.json"; // ENDERECO DO ARQUIVO JSON
+
+let quantidadeTotalDePerguntas;
 let nota = 0;
 
-let alternativaAnterior = null; // variavel global para guardar a alternativa previamente selecionada
+let alternativaAnterior = null;
 
-const altEscolhidas = []; // array para guardar as alternativas escolhidas
+let perguntaAtual = 0;
+let alternativasEscolhidas = [];
 let respostasCorretas = [];
 
 // Funcoes
 
-function pegarDados(i)
+const pegarDados = (perguntaAtualParam) => 
 {
-  fetch(url).then(response => {
-      
+  fetch(url).then(response => {     
     return response.json();
-    
   }).then(data => {
 
     if(data.erro)
@@ -58,65 +56,61 @@ function pegarDados(i)
       console.log("Erro ao acessar o JSON");
       return;
     }
-    
-    let qtdQuestoes = (data.perguntas.length) - 1;
-    total.textContent = parseInt(qtdQuestoes) + 1 + " questões"; // exibir o total de questoes do quiz para o usuario
-    
-    quantidade = parseInt(qtdQuestoes); // atribue o valor da variavel local qtdQuestoes para uma variavel global
 
-    altEscolhidas.length = quantidade + 1; // atribuindo o tamanho da array que guarda as escolhas
-
-    montarPergunta(data, i);
+    pegarQuantidadeTotalDeQuestoes(data);
+    montarQuestao(data, perguntaAtualParam);
   })
 }
 
-let perguntaAtual = 0;
 pegarDados(perguntaAtual); // monta a primeira questao na tela
 
-function montarPergunta(data, i)
-{
-  titulo.textContent = data.titulo;
-  nPergunta.textContent = data.perguntas[i].numPerg + ". ";
-  enunciado.textContent = data.perguntas[i].questao;
+const pegarQuantidadeTotalDeQuestoes = (dataDoJSON) => {
+  let qtdQuestoes = (dataDoJSON.perguntas.length) - 1;
 
-  altA.textContent = data.perguntas[i].altA;
-  altB.textContent = data.perguntas[i].altB;
-  altC.textContent = data.perguntas[i].altC;
-  altD.textContent = data.perguntas[i].altD;
+  quantidadeTotalDePerguntas = parseInt(qtdQuestoes);
 
-  respostaJson = data.perguntas[i].resposta;
-  respostasCorretas[i] = respostaJson;
+  totalDePerguntas.textContent = parseInt(qtdQuestoes) + 1 + " questões"; // exibir o total de questoes do quiz para o usuario
+
+  alternativasEscolhidas.length = quantidadeTotalDePerguntas + 1; // atribuindo o tamanho da array que guarda as escolhas
 }
 
-function escolhas(r) 
+const montarQuestao = (data, i) =>
 {
-  let resp = r.target;
+  titulo.textContent = data.titulo;
+  numDaPergunta.textContent = data.perguntas[i].numPerg + ". ";
+  enunciado.textContent = data.perguntas[i].questao;
+
+  alternativaA.textContent = data.perguntas[i].altA;
+  alternativaB.textContent = data.perguntas[i].altB;
+  alternativaC.textContent = data.perguntas[i].altC;
+  alternativaD.textContent = data.perguntas[i].altD;
+
+  respostasCorretas[i] = data.perguntas[i].resposta;
+}
+
+const restaurarEstilos = (a, b, c, d) => {
+  a.style.fontSize = "1rem";
+  b.style.fontSize = "1rem";
+  c.style.fontSize = "1rem";
+  d.style.fontSize = "1rem";
+
+  a.style.backgroundColor = "";
+  b.style.backgroundColor = "";
+  c.style.backgroundColor = "";
+  d.style.backgroundColor = "";
+}
+
+function escolhas(altEscolhida)
+{
+  let resp = altEscolhida.target;
 
   // se uma alternativa anterior ja foi clicada, restaura o estilo original
   if (alternativaAnterior)
   {
-    /*
-    tava usando esse metodo abaixo, mas ele gerava um bug estranho quando selecionava uma alternativa,
-    avancava e voltava para mudar, nao atualizando os estilos corretamente
-
-    alternativaAnterior.elemento.style.backgroundColor = ""; 
-    alternativaAnterior.elemento.style.fontSize = "1rem";
-    */
-
-    // entao fiz do jeito bruto abaixo e deu certo
-
-    altA.style.fontSize = "1rem";
-    altB.style.fontSize = "1rem";
-    altC.style.fontSize = "1rem";
-    altD.style.fontSize = "1rem";
-  
-    altA.style.backgroundColor = "";
-    altB.style.backgroundColor = "";
-    altC.style.backgroundColor = "";
-    altD.style.backgroundColor = "";
+    restaurarEstilos(alternativaA, alternativaB, alternativaC, alternativaD);
   }
 
-  altEscolhidas[perguntaAtual] = {
+  alternativasEscolhidas[perguntaAtual] = {
     texto: resp.textContent, // text content para comparar as respostas no final
     elemento: resp // para alterar os estilos
   };
@@ -124,39 +118,31 @@ function escolhas(r)
   resp.style.fontSize = "1.2rem"; // aplica o estilo a alternativa atual
   resp.style.backgroundColor = "#f39c12";
 
-  alternativaAnterior = altEscolhidas[perguntaAtual]; // armazena a alternativa atual como a ultima selecionada
+  alternativaAnterior = alternativasEscolhidas[perguntaAtual];
 }
 
-function estilos()
+const aplicarEstilos = () => 
 {
-  altA.style.fontSize = "1rem";
-  altB.style.fontSize = "1rem";
-  altC.style.fontSize = "1rem";
-  altD.style.fontSize = "1rem";
+  restaurarEstilos(alternativaA, alternativaB, alternativaC, alternativaD);
 
-  altA.style.backgroundColor = "";
-  altB.style.backgroundColor = "";
-  altC.style.backgroundColor = "";
-  altD.style.backgroundColor = "";
-
-  if(altEscolhidas[perguntaAtual]) // aplica o estilo a alternativa selecionada, se houver
+  if(alternativasEscolhidas[perguntaAtual]) // aplica o estilo a alternativa selecionada, se houver
   {
-    altEscolhidas[perguntaAtual].elemento.style.fontSize = "1.2rem";
-    altEscolhidas[perguntaAtual].elemento.style.backgroundColor = "#f39c12";
+    alternativasEscolhidas[perguntaAtual].elemento.style.fontSize = "1.2rem";
+    alternativasEscolhidas[perguntaAtual].elemento.style.backgroundColor = "#f39c12";
   }
 }
 
-function ant() // botao de voltar
+function ant()
 {
-  console.log(altEscolhidas);
+  console.log(alternativasEscolhidas);
+
   if (perguntaAtual > 0)
   {
     perguntaAtual -= 1;
     pegarDados(perguntaAtual);
     btnAvancar.removeAttribute("disabled");
-    estilos();
+    aplicarEstilos();
 
-    // funcao para checar se esta no começo e desabilitar o botao
     setTimeout(function isFirst() {
       if (perguntaAtual == 0)
         {
@@ -166,45 +152,43 @@ function ant() // botao de voltar
   }
 }
 
-function prox() // botao de avancar
+function prox()
 {
-  console.log(altEscolhidas);
-  if (perguntaAtual < quantidade)
+  console.log(alternativasEscolhidas);
+
+  if (perguntaAtual < quantidadeTotalDePerguntas)
   {
     perguntaAtual += 1;
     pegarDados(perguntaAtual);
     btnVoltar.removeAttribute("disabled");
-    estilos();
+    aplicarEstilos();
 
-    // funcao para checar se esta no fim e desabilitar o botao
-    setTimeout(function isLast() {
-      if (perguntaAtual == quantidade)
+    setTimeout(function seForUltimaQuestao() {
+      if (perguntaAtual == quantidadeTotalDePerguntas)
         {
           btnAvancar.setAttribute("disabled", "disabled");
-          btnConcluir.removeAttribute("disabled"); // deixa o botao concluir clicavel
-          btnConcluir.addEventListener("click", concluir); // evento para calcular a nota
+          btnConcluir.removeAttribute("disabled");
+          btnConcluir.addEventListener("click", concluir);
         }
     }, 1);
   }
 } 
 
-function seRespondeuTodas(array) // funcao para checar se todas perguntas foram respondidas
+const seRespondeuTodas = (array) =>
 {
   for (var i = 0; i < array.length; i++)
   {
     if (array[i] == null || array[i] === "")
     {
-      return true;
+      return false;
     }
   }
-  return false;
+  return true;
 }
 
 function concluir()
-{
-  const valorVazio = false;
-  
-  if (seRespondeuTodas(altEscolhidas))
+{  
+  if (!seRespondeuTodas(alternativasEscolhidas))
   {
     aviso.textContent = "Por favor responda todas as questões.";
     setTimeout(() => {
@@ -217,10 +201,10 @@ function concluir()
   }
 }
 
-function verificarRespostas() // nota final
+const verificarRespostas = () =>
 {
-  altEscolhidas.forEach((respostaEscolhida, index) => {
-    if (respostaEscolhida.texto === respostasCorretas[index])
+  alternativasEscolhidas.forEach((respostaEscolhida, i) => {
+    if (respostaEscolhida.texto === respostasCorretas[i])
     {
       nota++;
     }
@@ -228,26 +212,24 @@ function verificarRespostas() // nota final
   fim();
 }
 
-function fim()
+const fim = () =>
 {
   const acertos = document.createElement("div");
   acertos.classList.add("acertos");
   document.body.appendChild(acertos);
   acertos.textContent = `Você acertou ${nota} questões`;
 
-  criarTabela(altEscolhidas, respostasCorretas), 2000;
+  criarTabela(alternativasEscolhidas, respostasCorretas);
 }
 
-function criarTabela(alternsEscolhidas, alternsCorretas)
+const criarTabela = (altEscolhidasParam, altCorretasParam) =>
 {   
   const tabela = document.createElement("table");
   tabela.style.width = "50%";
 
-  // cria o cabecalho da tabela
   const cabecalho = tabela.createTHead();
   const linhaCabecalho = cabecalho.insertRow();
   
-  // define os titulos das colunas
   const colunas = ["Número da Questão", "Escolhida", "Correta"];
   colunas.forEach(texto => {
     const th = document.createElement('th');
@@ -255,17 +237,16 @@ function criarTabela(alternsEscolhidas, alternsCorretas)
     linhaCabecalho.appendChild(th);
   });
 
-  // cria o corpo da tabela
-  const corpoTabela = tabela.createTBody();
+  const corpoDaTabela = tabela.createTBody();
 
   // preenche as linhas com os dados
-  alternsEscolhidas.forEach((escolhida, index) => {
-    const linha = corpoTabela.insertRow();
+  altEscolhidasParam.forEach((escolhida, i) => {
+    const linha = corpoDaTabela.insertRow();
 
     // numero da questao
     const celulaNumero = linha.insertCell();
-    celulaNumero.appendChild(document.createTextNode(index + 1));
-    celulaNumero.classList.add("celulaNumero"); // classe para manipular no css depois
+    celulaNumero.appendChild(document.createTextNode(i + 1));
+    celulaNumero.classList.add("celulaNumero"); // classes para manipular no css depois
 
     // alternativa escolhida
     const celulaEscolhida = linha.insertCell();
@@ -274,10 +255,10 @@ function criarTabela(alternsEscolhidas, alternsCorretas)
 
     // alternativa correta
     const celulaCorreta = linha.insertCell();
-    celulaCorreta.appendChild(document.createTextNode(alternsCorretas[index]));
+    celulaCorreta.appendChild(document.createTextNode(altCorretasParam[i]));
     celulaCorreta.classList.add("celulaCorreta");
 
-    if (escolhida.texto === alternsCorretas[index])
+    if (escolhida.texto === altCorretasParam[i])
     {
       celulaCorreta.style.backgroundColor = "green";
     }
@@ -287,7 +268,6 @@ function criarTabela(alternsEscolhidas, alternsCorretas)
     }
   });
 
-  // insere a tabela no HTML
   document.body.appendChild(tabela);
 }
 
